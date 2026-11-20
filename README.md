@@ -6,7 +6,7 @@ An AWS Academy lab for Linux security-event monitoring and automated email notif
 
 ## Architecture
 
-![AWS security lab architecture](docs/Architecture AWS de détection et réponse automatisées.png)
+![AWS security lab architecture](docs/arch.png)
 
 ```mermaid
 flowchart LR
