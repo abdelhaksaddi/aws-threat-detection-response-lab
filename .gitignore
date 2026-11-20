@@ -1,0 +1,26 @@
+# AWS credentials and local overrides
+.aws/
+credentials
+*.pem
+*.key
+.env
+.env.*
+!*.example
+
+# Terraform local state and caches — NEVER commit
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+*.tfplan
+plan.out
+
+# Logs, local inventory and test responses
+local-output/
+response.json
+*.log
+__pycache__/
+*.pyc
+.DS_Store
