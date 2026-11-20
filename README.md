@@ -2,7 +2,7 @@
 
 An AWS Academy lab for Linux security-event monitoring and automated email notification.
 
-> **Status — 20 November 2026:** The live AWS resources were deployed through AWS CLI, **not Terraform**. The EventBridge-to-Lambda target is configured, and an automatic security email was reported received. S3 reporting and EC2 containment are not deployed.
+> **Status — 20 November 2026:** The live AWS resources were deployed through AWS CLI, **not Terraform**. The EventBridge-to-Lambda target is configured, and an automatic security email was reported received. S3 incident reporting is now deployed and verified with a simulated Lambda event; EC2 containment is not deployed.
 
 ## Architecture
 
@@ -18,7 +18,7 @@ flowchart LR
   EB --> L["Python Lambda"]
   L --> SNS["SNS Topic"]
   SNS --> MAIL["Security email"]
-  L -. planned .-> S3["S3 incident reports"]
+  L --> S3["S3 incident reports (SSE-S3)"]
 ```
 
 ## Existing AWS infrastructure
@@ -34,12 +34,12 @@ flowchart LR
 | Routing | `SecurityLab-Alarm-Rule` | Target configured |
 | Handler | `SecurityLab-IncidentResponse` | Active |
 | Notification | SNS `security-lab-alerts` | Email reported received |
-| Reporting | S3 incident JSON | Planned |
+| Reporting | S3 incident JSON in `security-lab-incidents-007712891456-us-east-1` | Tested with simulated alarm |
 | Remediation | Manual approval-gated containment | Planned |
 
 ## Repository layout
 
-- `lambda/`: Python SNS alarm handler
+- `lambda/`: Python SNS + S3 incident handler
 - `auditd/`: Linux audit rule
 - `cloudwatch/`: CloudWatch Agent template and detection configuration
 - `terraform/`: **read-only Terraform discovery** of existing infrastructure
@@ -62,6 +62,14 @@ terraform plan
 ```
 
 The Terraform `data` blocks read existing AWS resources; they **do not deploy, own, or import them**. The EC2 data lookup assumes a `Name=security-lab-ec2` tag: verify this first, because the instance was originally identified by instance ID.
+
+## LAB 14 — S3 Incident Reporting
+
+The existing Lambda function `SecurityLab-IncidentResponse` now uses `SNS_TOPIC_ARN` and `INCIDENT_BUCKET`. For a CloudWatch `ALARM` event, it publishes an SNS email and writes a JSON incident report to S3 using SSE-S3 (`AES256`). A successful simulated invocation returned `status: sent` and the S3 object was independently verified with `head-object` (`application/json`, 556 bytes, `AES256`).
+
+Example path: `incidents/2026/11/20/incident-9141e9f5-bf42-4a48-842d-bef39492ed45.json`.
+
+These results verify a direct Lambda test; they do **not** by themselves prove the updated S3 branch was exercised through a new live auditd → EventBridge end-to-end alarm. No S3 event payloads, credential files or logs containing secrets are committed.
 
 ## Security
 
