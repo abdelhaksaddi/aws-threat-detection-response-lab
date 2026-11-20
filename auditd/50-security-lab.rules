@@ -1,3 +1,0 @@
-# Ubuntu auditd: watch writes and attribute changes to /etc/passwd
-# Install as /etc/audit/rules.d/50-security-lab.rules
--w /etc/passwd -p wa -k identity-file-watch

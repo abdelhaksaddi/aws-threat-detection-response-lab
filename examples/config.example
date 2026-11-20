@@ -1,0 +1,4 @@
+# Copy these lines to C:\Users\<you>\.aws\config (outside GitHub).
+[profile academy]
+region = us-east-1
+output = json

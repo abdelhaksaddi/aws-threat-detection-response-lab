@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc">
+<title id="title">AWS Automated Threat Detection and Response Platform</title>
+<desc id="desc">EC2 Ubuntu auditd security events are collected by CloudWatch Agent, passed through CloudWatch Logs, Metric Filter, Alarm, EventBridge, Lambda and SNS email. S3 incident storage is planned.</desc>
+<defs>
+  <style><![CDATA[
+  .title{font:700 36px Arial,sans-serif;fill:#10243b}.subtitle{font:18px Arial,sans-serif;fill:#536982}
+  .section{font:700 21px Arial,sans-serif;fill:#142b43}.name{font:700 18px Arial,sans-serif;fill:#20334a}
+  .label{font:15px Arial,sans-serif;fill:#334861}.tiny{font:13px Arial,sans-serif;fill:#536982}
+  .mono{font:13px Consolas,monospace;fill:#273c55}.box{fill:#fff;stroke:#bdc9d9;stroke-width:2}
+  .arrow{fill:none;stroke:#2a8a63;stroke-width:3;marker-end:url(#green)}
+  .log{fill:none;stroke:#e97924;stroke-width:3;stroke-dasharray:10 7;marker-end:url(#orange)}
+  .network{fill:none;stroke:#2466c7;stroke-width:3;marker-end:url(#blue)}
+  ]]></style>
+  <marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2a8a63"/></marker>
+  <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#e97924"/></marker>
+  <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2466c7"/></marker>
+  <linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#f9fcff"/><stop offset="1" stop-color="#f0f6fc"/></linearGradient>
+</defs>
+<rect width="1600" height="960" fill="#fff"/>
+<rect x="30" y="20" width="1540" height="103" rx="12" fill="url(#bg)"/>
+<text x="58" y="65" class="title">AWS Automated Threat Detection &amp; Response</text>
+<text x="60" y="99" class="subtitle">Implemented AWS Academy Learner Lab · us-east-1 · 20 November 2026</text>
+<text x="1440" y="77" class="name" fill="#ee8600" text-anchor="middle">AWS</text>
+<rect x="32" y="144" width="1536" height="765" rx="17" fill="#f8fbff" stroke="#778fae" stroke-width="2"/>
+<rect x="52" y="160" width="1496" height="49" rx="10" fill="#1e3552"/>
+<text x="76" y="191" style="font:700 22px Arial;fill:white">AWS Cloud / Academy Account</text>
+<!-- VPC and subnet -->
+<rect x="77" y="234" width="700" height="545" rx="22" fill="#f3fbf2" stroke="#248343" stroke-width="3"/>
+<rect x="98" y="247" width="360" height="45" rx="9" fill="#e2f3e5"/>
+<text x="113" y="276" class="section">Amazon VPC · 10.0.0.0/16</text>
+<rect x="101" y="310" width="651" height="402" rx="16" fill="#fbfffb" stroke="#58aa72" stroke-width="2" stroke-dasharray="10 5"/>
+<text x="124" y="340" class="name">Public subnet · 10.0.1.0/24</text>
+<!-- user and gateway -->
+<rect x="102" y="383" width="115" height="71" rx="10" fill="#edf3ff" stroke="#87a2cb"/>
+<text x="160" y="414" text-anchor="middle" class="name" style="font-size:16px">Internet</text>
+<text x="160" y="437" text-anchor="middle" class="tiny">gateway</text>
+<path class="network" d="M217 417 H280"/>
+<text x="235" y="399" class="tiny">SSH</text>
+<!-- EC2 -->
+<rect x="285" y="366" width="300" height="278" rx="13" fill="#fff" stroke="#ed851e" stroke-width="3"/>
+<rect x="285" y="366" width="300" height="48" rx="10" fill="#fff3e4"/>
+<text x="307" y="396" class="name">Amazon EC2 · Ubuntu</text>
+<text x="305" y="440" class="mono">i-02b37eb63cdd1fc7f</text>
+<text x="305" y="465" class="label">EBS root volume · Public IP</text>
+<rect x="301" y="490" width="268" height="139" rx="10" fill="#edf6ff" stroke="#a8bfde"/>
+<text x="319" y="518" class="name">Host security stack</text>
+<text x="319" y="545" class="label">Linux auditd · /etc/passwd</text>
+<text x="319" y="572" class="label">Rule: identity-file-watch</text>
+<text x="319" y="600" class="label">CloudWatch Agent</text>
+<!-- SG -->
+<rect x="601" y="368" width="138" height="276" rx="12" fill="#fff" stroke="#cc4650" stroke-width="2"/>
+<text x="614" y="400" class="name" style="font-size:16px">Security</text>
+<text x="614" y="420" class="name" style="font-size:16px">group</text>
+<text x="614" y="449" class="tiny">security-lab-sg</text>
+<path d="M613 465H727" stroke="#e1b3b5"/>
+<text x="614" y="492" class="tiny">SSH · TCP 22</text>
+<text x="614" y="515" class="tiny">Student IP</text>
+<text x="614" y="541" class="tiny">Inbound rule</text>
+<text x="614" y="564" class="tiny">restricted</text>
+<text x="614" y="590" class="tiny">Other traffic:</text>
+<text x="614" y="612" class="tiny">verify in AWS</text>
+<!-- route table -->
+<rect x="151" y="669" width="523" height="70" rx="10" fill="#f6f8fc" stroke="#99a8ba"/>
+<text x="174" y="697" class="name">Route table · public subnet</text>
+<text x="174" y="723" class="mono">0.0.0.0/0  →  Internet Gateway</text>
+<!-- monitoring section -->
+<text x="825" y="260" class="section">Detection &amp; Notification Pipeline</text>
+<rect class="box" x="822" y="294" width="335" height="91" rx="12"/>
+<rect x="823" y="295" width="9" height="88" fill="#dc4c89"/>
+<text x="850" y="325" class="name">Amazon CloudWatch Logs</text>
+<text x="850" y="350" class="mono">/security-lab/ubuntu/auditd</text>
+<text x="850" y="371" class="tiny">Centralized EC2 audit events</text>
+<path class="log" d="M585 585 H795 V339 H822"/>
+<text x="661" y="575" class="tiny">Audit logs</text>
+<rect class="box" x="1190" y="294" width="334" height="91" rx="12"/>
+<rect x="1190" y="294" width="9" height="91" fill="#d44d8b"/>
+<text x="1215" y="324" class="name">CloudWatch Metric Filter</text>
+<text x="1215" y="349" class="mono">IdentityFileWatchFilter</text>
+<text x="1215" y="369" class="tiny">SecurityLab/IdentityFileChanges</text>
+<path class="arrow" d="M1157 339 H1190"/>
+<rect class="box" x="1190" y="430" width="334" height="81" rx="12"/>
+<text x="1215" y="459" class="name">CloudWatch Alarm</text>
+<text x="1215" y="485" class="mono">SecurityLab-IdentityFileChange</text>
+<path class="arrow" d="M1355 385 V429"/>
+<rect class="box" x="1190" y="555" width="334" height="83" rx="12"/>
+<text x="1215" y="584" class="name">Amazon EventBridge</text>
+<text x="1215" y="611" class="mono">SecurityLab-Alarm-Rule</text>
+<path class="arrow" d="M1355 511 V555"/>
+<rect x="822" y="555" width="335" height="83" rx="12" fill="#fff8ef" stroke="#e78824" stroke-width="2"/>
+<text x="847" y="584" class="name">AWS Lambda</text>
+<text x="847" y="610" class="mono">SecurityLab-IncidentResponse</text>
+<path class="arrow" d="M1190 596 H1157"/>
+<rect class="box" x="822" y="690" width="335" height="78" rx="12"/>
+<text x="850" y="718" class="name">Amazon SNS</text>
+<text x="850" y="742" class="mono">security-lab-alerts</text>
+<path class="arrow" d="M990 638 V690"/>
+<rect class="box" x="1190" y="690" width="334" height="78" rx="12"/>
+<text x="1215" y="719" class="name">Security Alert Email</text>
+<text x="1215" y="744" class="tiny">Analyst notification received</text>
+<path class="arrow" d="M1157 729 H1190"/>
+<!-- planned -->
+<rect x="822" y="813" width="702" height="59" rx="12" fill="#f7f9fb" stroke="#9baabe" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="847" y="838" class="name">Planned · Amazon S3 incident JSON reports</text>
+<text x="847" y="857" class="tiny">Not deployed yet; requires Lambda write permissions</text>
+<path d="M817 596 H799 V842 H822" fill="none" stroke="#a0aabb" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="90" y="803" width="660" height="71" rx="10" fill="#fff" stroke="#a6b6c7"/>
+<text x="110" y="831" class="name">GitHub · Source code + Terraform inventory</text>
+<text x="110" y="853" class="mono">abdelhaksaddi/aws-threat-detection-response-lab</text>
+<text x="89" y="898" class="tiny">Blue: management/network  ·  Orange dashed: audit logs  ·  Green: event/notification flow  ·  Gray dashed: planned</text>
+</svg>
